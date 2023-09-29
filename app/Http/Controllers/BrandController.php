@@ -11,5 +11,6 @@ class BrandController extends Controller
         $id = $request->id;
         $brand = Brand::where('id',$id)->with('images')->first();
         return view('brand')->with('brand',$brand);
+        
     }
 }
