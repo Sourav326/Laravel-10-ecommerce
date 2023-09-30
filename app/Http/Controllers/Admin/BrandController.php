@@ -15,7 +15,7 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $brands = Brand::paginate(10);
+        $brands = Brand::paginate(4);
         return view('admin.brand.index')->with('brands',$brands);
     }
 
@@ -111,14 +111,18 @@ class BrandController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $is_available = Brand::where('id',$id)->first();
+        if($is_available){
+            $is_available->delete();
+            return redirect()->back()->with('sucess_message'," Brand Deleted successfully");
+        }
     }
 
 
     public function indexCategory(){
-        $brandCategory = BrandCategory::paginate(10);
+        $brandCategory = BrandCategory::paginate(3);
         return view('admin.brand.category')->with('brandCategory',$brandCategory);
     }
 
@@ -160,15 +164,28 @@ class BrandController extends Controller
 
 
      /**
-     * Remove the specified resource from storage.
+     * Show and update the specified resource from storage.
      */
-    public function categoryShow($id)
+
+    public function categoryShow(Request $request,$id)
     {
-        $brandCategory = BrandCategory::where('id',$id)->first();
-        if($brandCategory){
-            return view('admin.brand.showCategory');
+        if($request->isMethod('post')){
+           
+                $brandCategory = BrandCategory::find($id);
+                $brandCategory->title = $request->title;
+                if($brandCategory->save()){
+                    return redirect()->back()->with('sucess_message',$request->title." Brand Category Updated successfully");
+                } else{
+                    return redirect()->back()->with('error_message',$request->title." category Not updated due to some reason");
+                }
+
         } else {
-            return redirect()->back()->with('error_message'," Brand Category not available");
+            $brandCategory = BrandCategory::find($id);
+            if($brandCategory){
+                return view('admin.brand.showCategory')->with('brandCategory',$brandCategory);
+            } else {
+                return redirect()->back()->with('error_message'," Brand Category not available");
+            }
         }
     }
 

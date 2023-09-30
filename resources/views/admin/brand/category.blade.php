@@ -26,6 +26,9 @@
                                 Catgory Title
                             </th>
                             <th>
+                                Brands
+                            </th>
+                            <th>
                                 Created date
                             </th>
                             <th>
@@ -40,7 +43,13 @@
                                 {{$brandCat->title}}
                             </td>
                             <td>
-                                May 15, 2015
+                                
+                                @foreach($brandCat->brands as $brand)
+                                {{$brand->title.","}}
+                                @endforeach
+                            </td>
+                            <td>
+                            {{date_format($brandCat->created_at,"M d Y")}}
                             </td>
                             <td>
                                 <a href="{{route('admin.brands.catgory.show',['id' => $brandCat->id])}}">

@@ -61,14 +61,18 @@
                             </a>
                           </td>
                           <td>
-                           Pupular
+                          @foreach($brand->brandcategories as $brandcategory)
+                            {{$brandcategory->title}}
+                          @endforeach
                           </td>
                           <td>
-                            May 15, 2015
+                            {{date_format($brand->created_at,"M d Y")}}
                           </td>
                           <td>
-                          <label class="badge badge-info">View</label>
-                          <label class="badge badge-danger">Delete</label>
+                          <!-- <label class="badge badge-info">View</label> -->
+                          <a href="{{route('admin.brands.delete',['id' => $brand->id])}}">
+                                    <label class="badge badge-danger">Delete</label>
+                                </a>
                           </td>
                         </tr>
                         @empty

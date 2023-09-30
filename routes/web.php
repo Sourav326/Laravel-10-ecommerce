@@ -63,10 +63,11 @@ Route::prefix('admin')->group(function () {
         Route::match(['get', 'post'],'brands/create',[BrandController::class,'create'])->name('admin.brands.create');
         Route::get('brands',[BrandController::class,'index'])->name('admin.brands');
         Route::get('brands/status/{id}',[BrandController::class,'updateStatus'])->name('admin.brands.updateStatus');
+        Route::get('brand/delete/{id}',[BrandController::class,'destroy'])->name('admin.brands.delete');
         Route::get('brands-category',[BrandController::class,'indexCategory'])->name('admin.brands.catgory');
         Route::match(['get', 'post'],'brands/category/create',[BrandController::class,'createCategory'])->name('admin.brands.category.create');
         Route::get('brand/category/delete/{id}',[BrandController::class,'categoryDestroy'])->name('admin.brands.catgory.delete');
-        Route::get('brand/category/show/{id}',[BrandController::class,'categoryShow'])->name('admin.brands.catgory.show');
+        Route::match(['get', 'post'],'brand/category/show/{id}',[BrandController::class,'categoryShow'])->name('admin.brands.catgory.show');
         
     });
     
