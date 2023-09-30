@@ -56,7 +56,7 @@
                                 </div>
                                 <div class="mainNav">
                                     <ul>
-                                        <li><a href="category.html">Brand</a>
+                                        <li><a href="javascript:void(0)">Brand</a>
                                             <div class="megaSubmenumain">
                                                 <div class="row bandMenu mx-0">
                                                     <div class="col-lg-4">
@@ -115,137 +115,32 @@
                                                         <div class="bransLaunchesmain">
                                                             <ul class="nav nav-pills brandPills" id="pills-tab"
                                                                 role="tablist">
-                                                                <li class="nav-item brandItem" role="presentation">
-                                                                    <button class="nav-link active brandLink"
-                                                                        id="pills-popular-tab" data-toggle="pill"
-                                                                        data-target="#pills-popular" type="button"
-                                                                        role="tab" aria-controls="pills-popular"
-                                                                        aria-selected="true">Popular</button>
-                                                                </li>
-                                                                <li class="nav-item brandItem" role="presentation">
-                                                                    <button class="nav-link brandLink"
-                                                                        id="pills-luxe-tab" data-toggle="pill"
-                                                                        data-target="#pills-luxe" type="button"
-                                                                        role="tab" aria-controls="pills-luxe"
-                                                                        aria-selected="false">Luxe</button>
-                                                                </li>
-                                                                <li class="nav-item brandItem" role="presentation">
-                                                                    <button class="nav-link brandLink"
-                                                                        id="pills-atwinning-tab" data-toggle="pill"
-                                                                        data-target="#pills-atwinning" type="button"
-                                                                        role="tab" aria-controls="pills-atwinning"
-                                                                        aria-selected="false">Only at winning</button>
-                                                                </li>
-                                                                <li class="nav-item brandItem" role="presentation">
-                                                                    <button class="nav-link brandLink"
-                                                                        id="pills-newlaunch-tab" data-toggle="pill"
-                                                                        data-target="#pills-newlaunch" type="button"
-                                                                        role="tab" aria-controls="pills-newlaunch"
-                                                                        aria-selected="false">New launches</button>
-                                                                </li>
+                                                                @foreach($menuItemsCategoryBrands as $menuItemsCategoryBrand)
+                                                                    <li class="nav-item brandItem" role="presentation">
+                                                                        <button class="nav-link brandLink"
+                                                                            id="pills-popular-tab" data-toggle="pill"
+                                                                            data-target="#pills-{{$menuItemsCategoryBrand->id}}" type="button"
+                                                                            role="tab" aria-controls="pills-{{$menuItemsCategoryBrand->id}}"
+                                                                            aria-selected="true">{{$menuItemsCategoryBrand->title}}</button>
+                                                                    </li>
+                                                                    @endforeach
                                                             </ul>
                                                             <div class="tab-content" id="pills-tabContent">
-                                                                <div class="tab-pane show active" id="pills-popular"
-                                                                    role="tabpanel" aria-labelledby="pills-popular-tab">
+                                                            @foreach($menuItemsCategoryBrands as $menuItemsCategoryBrand)
+                                                                <div class="tab-pane" id="pills-{{$menuItemsCategoryBrand->id}}"
+                                                                    role="tabpanel" aria-labelledby="pills-{{$menuItemsCategoryBrand->id}}-tab">
                                                                     <div class="brnadimgbxrow">
-                                                                        @foreach($menuItemsBrands as $menuItemsBrand)
+                                                                        @foreach($menuItemsCategoryBrand->brands as $brand)
                                                                             <div class="brnadimgbxcol">
-                                                                                <a href="{{route('brand.show',['id' => $menuItemsBrand->id])}}">
-                                                                                <img src="{{asset('storage/images/brands').'/'.$menuItemsBrand->logo}}" alt="{{$menuItemsBrand->logo}}">
+                                                                                <a href="{{route('brand.show',['id' => $brand->id])}}">
+                                                                                <img src="{{asset('storage/images/brands').'/'.$brand->logo}}" alt="{{$brand->logo}}">
                                                                                 </a>
                                                                             </div>
                                                                         @endforeach
                                                                     </div>
                                                                 </div>
-                                                                <div class="tab-pane" id="pills-luxe" role="tabpanel"
-                                                                    aria-labelledby="pills-luxe-tab">
-                                                                    <div class="brnadimgbxrow">
-                                                                        <div class="brnadimgbxcol">
-                                                                            <img src="{{asset('assets/images/brand.avif')}}"
-                                                                                alt="">
-                                                                        </div>
-                                                                        <div class="brnadimgbxcol">
-                                                                            <img src="{{asset('assets/images/brand.avif')}}"
-                                                                                alt="">
-                                                                        </div>
-                                                                        <div class="brnadimgbxcol">
-                                                                            <img src="{{asset('assets/images/brand.avif')}}"
-                                                                                alt="">
-                                                                        </div>
-                                                                        <div class="brnadimgbxcol">
-                                                                            <img src="{{asset('assets/images/brand.avif')}}"
-                                                                                alt="">
-                                                                        </div>
-                                                                        <div class="brnadimgbxcol">
-                                                                            <img src="{{asset('assets/images/brand.avif')}}"
-                                                                                alt="">
-                                                                        </div>
-                                                                        <div class="brnadimgbxcol">
-                                                                            <img src="{{asset('assets/images/brand.avif')}}"
-                                                                                alt="">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="tab-pane" id="pills-atwinning"
-                                                                    role="tabpanel"
-                                                                    aria-labelledby="pills-atwinning-tab">
-                                                                    <div class="brnadimgbxrow">
-                                                                        <div class="brnadimgbxcol">
-                                                                            <img src="{{asset('assets/images/brand.avif')}}"
-                                                                                alt="">
-                                                                        </div>
-                                                                        <div class="brnadimgbxcol">
-                                                                            <img src="{{asset('assets/images/brand.avif')}}"
-                                                                                alt="">
-                                                                        </div>
-                                                                        <div class="brnadimgbxcol">
-                                                                            <img src="{{asset('assets/images/brand.avif')}}"
-                                                                                alt="">
-                                                                        </div>
-                                                                        <div class="brnadimgbxcol">
-                                                                            <img src="{{asset('assets/images/brand.avif')}}"
-                                                                                alt="">
-                                                                        </div>
-                                                                        <div class="brnadimgbxcol">
-                                                                            <img src="{{asset('assets/images/brand.avif')}}"
-                                                                                alt="">
-                                                                        </div>
-                                                                        <div class="brnadimgbxcol">
-                                                                            <img src="{{asset('assets/images/brand.avif')}}"
-                                                                                alt="">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="tab-pane" id="pills-atwinning"
-                                                                    role="tabpanel"
-                                                                    aria-labelledby="pills-newlaunch-tab">
-                                                                    <div class="brnadimgbxrow">
-                                                                        <div class="brnadimgbxcol">
-                                                                            <img src="{{asset('assets/images/brand.avif')}}"
-                                                                                alt="">
-                                                                        </div>
-                                                                        <div class="brnadimgbxcol">
-                                                                            <img src="{{asset('assets/images/brand.avif')}}"
-                                                                                alt="">
-                                                                        </div>
-                                                                        <div class="brnadimgbxcol">
-                                                                            <img src="{{asset('assets/images/brand.avif')}}"
-                                                                                alt="">
-                                                                        </div>
-                                                                        <div class="brnadimgbxcol">
-                                                                            <img src="{{asset('assets/images/brand.avif')}}"
-                                                                                alt="">
-                                                                        </div>
-                                                                        <div class="brnadimgbxcol">
-                                                                            <img src="{{asset('assets/images/brand.avif')}}"
-                                                                                alt="">
-                                                                        </div>
-                                                                        <div class="brnadimgbxcol">
-                                                                            <img src="{{asset('assets/images/brand.avif')}}"
-                                                                                alt="">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                                             @endforeach
+                                                                
                                                             </div>
                                                         </div>
                                                     </div>

@@ -41,7 +41,9 @@ class BrandController extends Controller
     
                     $brand->logo = $imageName;
                     $banners = $request->file('banners');
+                    $category = $request->category;
                     if($brand->save()){
+                        $brand->brandcategories()->attach($category);
                         if($request->hasFile('banners')){
                             foreach($banners as $key => $banner){
                                 if($banner->isValid()){
@@ -52,15 +54,13 @@ class BrandController extends Controller
                                 'url' => $imageName
                             ]);
                         }
-                        // Category Relation Start
-                       
-
                     }
                     return redirect()->back()->with('sucess_message',$request->title." Brand Added successfully");
                 }
             }
         } else {
-            return view('admin.brand.create');
+            $brandCategory = BrandCategory::all();
+            return view('admin.brand.create')->with('brandCategory',$brandCategory);;
         }
     }
 
@@ -155,6 +155,20 @@ class BrandController extends Controller
         if($is_available){
             $is_available->delete();
             return redirect()->back()->with('sucess_message'," Brand Category Deleted successfully");
+        }
+    }
+
+
+     /**
+     * Remove the specified resource from storage.
+     */
+    public function categoryShow($id)
+    {
+        $brandCategory = BrandCategory::where('id',$id)->first();
+        if($brandCategory){
+            return view('admin.brand.showCategory');
+        } else {
+            return redirect()->back()->with('error_message'," Brand Category not available");
         }
     }
 

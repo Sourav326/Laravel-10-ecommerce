@@ -29,10 +29,9 @@
                             <div class="form-group ">
                                 <label >Brand Category</label>
                                 <select name="category" id="category" class="form-control multi-select">
-                                    <option value="Popular">Popular</option>
-                                    <option value="Luxe">Luxe</option>
-                                    <option value="only-at-winning">only at winning</option>
-                                    <option value="new-launches">New launches</option>
+                                    @foreach ($brandCategory as $item)
+                                        <option value="{{$item->id}}">{{$item->title}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>

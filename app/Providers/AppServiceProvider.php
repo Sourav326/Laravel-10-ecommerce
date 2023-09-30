@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 use App\Models\Brand;
+use App\Models\BrandCategory;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,7 +23,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $menuItemsBrands = Brand::where('status',0)->get();
-        view()->share('menuItemsBrands',$menuItemsBrands);
+        $menuItemsCategoryBrands = BrandCategory::get();
+        view()->share(['menuItemsBrands'=>$menuItemsBrands,'menuItemsCategoryBrands'=>$menuItemsCategoryBrands]);
+
         Paginator::defaultView('admin.pagination.pagination');
     }
 }
