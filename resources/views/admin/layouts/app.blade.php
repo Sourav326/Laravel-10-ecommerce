@@ -209,12 +209,27 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#users" aria-expanded="false" aria-controls="users">
+            <a class="nav-link" data-toggle="collapse" href="#brands" aria-expanded="false" aria-controls="brands">
                 <i class="typcn typcn-user-outline menu-icon"></i>
                 <span class="menu-title">Brands</span>
                 <i class="typcn typcn-chevron-right menu-arrow"></i>
             </a>
-            <div class="collapse" id="users">
+            <div class="collapse" id="brands">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="{{route('admin.brands.catgory')}}">Brand Categories</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{route('admin.brands.category.create')}}">Create Brand Category</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{route('admin.brands')}}">Brands List</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{route('admin.brands.create')}}">Create Brand</a></li>
+                </ul>
+            </div>
+        </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#products" aria-expanded="false" aria-controls="products">
+                <i class="typcn typcn-user-outline menu-icon"></i>
+                <span class="menu-title">Products</span>
+                <i class="typcn typcn-chevron-right menu-arrow"></i>
+            </a>
+            <div class="collapse" id="products">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="{{route('admin.brands.catgory')}}">Brand Categories</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{route('admin.brands.category.create')}}">Create Brand Category</a></li>

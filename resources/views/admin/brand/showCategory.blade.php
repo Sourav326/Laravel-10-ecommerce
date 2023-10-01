@@ -55,9 +55,6 @@
                                     Brand Title
                                 </th>
                                 <th>
-                                    Status
-                                </th>
-                                <th>
                                     Created date
                                 </th>
                                 <th>
@@ -74,17 +71,7 @@
                                 </td>
                                 <td>
                                     {{$brand->title}}
-                                </td>
-                                <td>
-                                    <a href="{{route('admin.brands.updateStatus',['id' => $brand->id])}}">
-                                        @if($brand->status == 0)
-                                        <label class="badge badge-success">Active</label>
-                                        @else
-                                        <label class="badge badge-danger">Deactive</label>
-                                        @endif
-                                    </a>
-                                </td>
-
+</td>
                                 <td>
                                     {{date_format($brand->created_at,"M d Y")}}
                                 </td>
